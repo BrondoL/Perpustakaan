@@ -14,6 +14,7 @@
                 <thead>
                     <tr>
                         <th scope="col">No.</th>
+                        <th scope="col">Controller</th>
                         <th scope="col">Menu</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -24,6 +25,7 @@
                         <tr>
                             <th scope="row"><?= $i++; ?></th>
                             <td><?= $m['menu']; ?></td>
+                            <td><?= $m['judul']; ?></td>
                             <td>
                                 <a href="" class="badge badge-success">Edit</a>
                                 <a href="" class="badge badge-danger">Delete</a>
@@ -53,6 +55,9 @@
             </div>
             <form action="<?= base_url('menu'); ?>" method="POST">
                 <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="controller" name="controller" placeholder="Controller Name">
+                    </div>
                     <div class="form-group">
                         <input type="text" class="form-control" id="menu" name="menu" placeholder="Menu Name">
                     </div>

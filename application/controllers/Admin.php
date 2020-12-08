@@ -32,6 +32,32 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function addRole()
+    {
+        $role = $this->input->post('role');
+        $this->db->insert('user_role', ['role' => $role]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil menambahkan role baru!</div>');
+        redirect('admin/role');
+    }
+
+    public function editRole($role_id)
+    {
+        $role = $this->input->post('role');
+        $this->db->set('role', $role);
+        $this->db->where('id', $role_id);
+        $this->db->update('user_role');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Changed!</div>');
+        redirect('admin/role');
+    }
+
+    public function deleteRole($role_id)
+    {
+        $this->db->where('id', $role_id);
+        $this->db->delete('user_role');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil menghapus role!</div>');
+        redirect('admin/role');
+    }
+
     public function roleAccess($role_id)
     {
         $data['title'] = 'Role';
