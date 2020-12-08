@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 03, 2020 at 11:25 AM
+-- Generation Time: Dec 08, 2020 at 11:59 AM
 -- Server version: 10.3.25-MariaDB-0+deb10u1
 -- PHP Version: 7.3.19-1~deb10u1
 
@@ -20,6 +20,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `ci3`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `buku`
+--
+
+CREATE TABLE `buku` (
+  `buku_id` int(11) NOT NULL,
+  `sampul` varchar(128) NOT NULL,
+  `kode_buku` varchar(128) NOT NULL,
+  `judul` varchar(128) NOT NULL,
+  `penerbit` varchar(128) NOT NULL,
+  `pengarang` varchar(128) NOT NULL,
+  `th_terbit` varchar(128) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `ket` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `buku`
+--
+
+INSERT INTO `buku` (`buku_id`, `sampul`, `kode_buku`, `judul`, `penerbit`, `pengarang`, `th_terbit`, `jumlah`, `ket`) VALUES
+(5, '1.png', '978-602-1514-91-7', 'Algoritma dan Pemrograman dalam C++', 'Informatika', 'Rinaldi Munir', 'Februari 2016', 20, 'Buku Algoritma dan Pemrograman dalam Bahasa Pascal, C, dan C++ merupakan edisi baru dari buku sebelumnya, yaitu Algoritma dan Pemrograman dalam Bahasa Pascal dan C. Buku ini disusun bagi siapapun (siswa, mahasiswa, umum) yang ingin mempelajari bidang pemrograman.⁣⁣ ⁣⁣'),
+(6, '2.png', '978-623-7131-25-0 ⁣', 'Social Media & Social Network', 'Informatika', 'I Putu Agus Eka Pratama ⁣', '2020', 50, 'Melalui buku ini kamu dapat mengetahui perkembangan social media dan social network dari waktu ke waktu beserta bisnis didalamnya, teknologi Augmented Reality, Machine Learning, dan Cloud Computing beserta dengan perannya pada social media dan social network, apa etika komputer dan etika internet serta bagaimana penerapannya dalam penggunaan social media.⁣⁣'),
+(11, '3.png', '978-632-1514-91-8', 'Pemrograman Web', 'Informatika', 'Priyanto Hidayatulloh', 'Desember 2016', 10, 'Buku Pemrograman Web : Studi Kasus Web Sistem Informasi Akademik ini cocok untuk Mahasiswa/Siswa SMK dalam menyelesaikan tugas mata kuliah Pemrograman Web dan tugas akhir dengan topik web atau sistem informasi. Buku ini juga cocok untuk freelance programmer maupun programmer profesional yang bekerja di perusahaan serta orang awam terhadap dunia pemrograman web karena dijelaskan dari nol secara runtut dan terperinci dengan bahasa yang sederhana dan mudah dimengerti.⁣⁣⁣');
 
 -- --------------------------------------------------------
 
@@ -45,7 +72,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
 (1, 'Aulia Ahmad Nabil', 'admin@gmail.com', 'default.png', '$2y$10$XhdnKJwu3rzqvY3uEy/S6OPx2.ZT33R65AZRb3eeFf4aIdijc4Bpu', 1, 1, 1605710844),
 (2, 'BrondoL', 'idnbdy@gmail.com', 'default.png', '$2y$10$/7eJCYCazAadW0c9ffZst.12RGc49nqyvgOJnlgJfDlsDosT1QIla', 2, 1, 1605711513),
-(4, 'COMPETITIVE PROGRAMMING CONTEST', 'nabilunited2@gmail.com', 'default.png', '$2y$10$U6f31DXEX9fCK/vLWO11V.NKDSKTEXg4yVe3IEBwqIiJ.LtpeIHoa', 2, 1, 1606900006);
+(4, 'Ahmad Nabil El Hafidz', 'nabilunited2@gmail.com', 'default.png', '$2y$10$t64n8X0CzTrfZzPs44yiTublxbMg1mY2GA1mPAXZUDy/MmKhRCfba', 2, 1, 1606900006);
 
 -- --------------------------------------------------------
 
@@ -65,9 +92,9 @@ CREATE TABLE `user_access_menu` (
 
 INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (1, 1, 1),
-(2, 1, 2),
 (3, 2, 2),
-(5, 1, 3);
+(10, 1, 3),
+(12, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -77,17 +104,19 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 
 CREATE TABLE `user_menu` (
   `id` int(11) NOT NULL,
-  `menu` varchar(128) NOT NULL
+  `menu` varchar(128) NOT NULL,
+  `judul` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user_menu`
 --
 
-INSERT INTO `user_menu` (`id`, `menu`) VALUES
-(1, 'Admin'),
-(2, 'User'),
-(3, 'Menu');
+INSERT INTO `user_menu` (`id`, `menu`, `judul`) VALUES
+(1, 'Admin', 'Admin'),
+(2, 'User', 'User'),
+(3, 'Perpus', 'Menu Perpustakaan'),
+(4, 'Menu', 'Menu Web');
 
 -- --------------------------------------------------------
 
@@ -129,12 +158,16 @@ CREATE TABLE `user_sub_menu` (
 
 INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active`) VALUES
 (1, 1, 'Dashboard', 'admin', 'fas fa-fw fa-tachometer-alt', 1),
-(2, 2, 'My Profile', 'user', 'fas fa-fw fa-user', 1),
-(3, 2, 'Edit Profile', 'user/edit', 'fas fa-fw fa-user-edit', 1),
-(4, 3, 'Menu Management', 'menu', 'fas fa-fw fa-folder', 1),
-(5, 3, 'Submenu Management', 'menu/submenu', 'far fa-fw fa-folder-open', 1),
+(2, 2, 'Daftar Buku', 'user', 'fas fa-fw fa-book', 1),
+(3, 2, 'Buku Saya', 'user/edit', 'fas fa-fw fa-bookmark', 1),
+(4, 4, 'Menu Management', 'menu', 'fas fa-fw fa-folder', 1),
+(5, 4, 'Submenu Management', 'menu/submenu', 'far fa-fw fa-folder-open', 1),
 (9, 1, 'Role', 'admin/role', 'fas fa-fw fa-user-tie', 1),
-(10, 2, 'Change Password', 'user/changepassword', 'fas fa-fw fa-key', 1);
+(10, 2, 'Riwayat Peminjaman', 'user/changepassword', 'fas fa-fw fa-shopping-cart', 1),
+(11, 3, 'Data Buku', 'perpus', 'fas fa-fw fa-book', 1),
+(12, 3, 'Data Member', 'perpus/datamember', 'fas fa-fw fa-users', 1),
+(13, 3, 'Data Peminjaman', 'perpus/datapeminjaman', 'fas fa-fw fa-shopping-cart', 1),
+(14, 3, 'Data Pengembalian', 'perpus/datapengembalian', 'fas fa-fw fa-sync-alt', 1);
 
 -- --------------------------------------------------------
 
@@ -159,6 +192,12 @@ INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `buku`
+--
+ALTER TABLE `buku`
+  ADD PRIMARY KEY (`buku_id`);
 
 --
 -- Indexes for table `user`
@@ -201,6 +240,12 @@ ALTER TABLE `user_token`
 --
 
 --
+-- AUTO_INCREMENT for table `buku`
+--
+ALTER TABLE `buku`
+  MODIFY `buku_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
@@ -210,25 +255,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `user_token`
