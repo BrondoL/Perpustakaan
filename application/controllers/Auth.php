@@ -37,7 +37,7 @@ class Auth extends CI_Controller
         }
     }
 
-    public function _login()
+    private function _login()
     {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
