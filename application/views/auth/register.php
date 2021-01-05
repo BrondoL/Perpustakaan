@@ -1,48 +1,70 @@
-<div class="container">
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="register-logo">
+            <a href="../../index2.html"><b>Admin</b>LTE</a>
+        </div>
 
-    <div class="card o-hidden border-0 shadow-lg my-5 col-lg-7 mx-auto">
-        <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-            <div class="row">
-                <div class="col-lg">
-                    <div class="p-5">
-                        <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
-                        </div>
-                        <form class="user" action="<?php echo base_url(); ?>auth/register" method="post">
-                            <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Full Name" value="<?php echo set_value('name'); ?>">
-                                <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg">Register a new membership</p>
+
+                <form action="<?php echo base_url(); ?>auth/register" method="post">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Full name" name="name">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
                             </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Email Address" value="<?php echo set_value('email'); ?>">
-                                <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="password" class="form-control form-control-user" id="password1" name="password1" placeholder="Password">
-                                    <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="password" class="form-control form-control-user" id="password2" name="password2" placeholder="Repeat Password">
-                                    <?= form_error('password2', '<small class="text-danger pl-3">', '</small>'); ?>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-user btn-block">
-                                Register Account
-                            </button>
-                        </form>
-                        <hr>
-                        <div class="text-center">
-                            <a class="small" href="<?= base_url('auth/forgotpassword'); ?>">Forgot Password?</a>
-                        </div>
-                        <div class="text-center">
-                            <a class="small" href="<?= base_url('auth'); ?>">Already have an account? Login!</a>
                         </div>
                     </div>
-                </div>
+                    <?= form_error('name', '<small class="text-danger pl-1">', '</small>'); ?>
+                    <div class="input-group mt-3">
+                        <input type="email" class="form-control" placeholder="Email" name="email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <?= form_error('email', '<small class="text-danger pl-1">', '</small>'); ?>
+                    <div class="input-group mt-3">
+                        <input type="password" class="form-control" placeholder="Password" name="password1">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <?= form_error('password1', '<small class="text-danger pl-1">', '</small>'); ?>
+                    <div class="input-group mt-3">
+                        <input type="password" class="form-control" placeholder="Retype password" name="password2">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <?= form_error('password2', '<small class="text-danger pl-1">', '</small>'); ?>
+                    <div class="row mt-3">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                                <label for="agreeTerms">
+                                    I agree to the <a href="#">terms</a>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+                <p class="mt-3">
+                    <a href="<?= base_url('auth'); ?>" class="text-center">I already have a membership</a>
+                </p>
             </div>
-        </div>
+            <!-- /.form-box -->
+        </div><!-- /.card -->
     </div>
-
-</div>
