@@ -12,7 +12,7 @@
             <?= form_error('password2', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
             <?= $this->session->flashdata('message'); ?>
 
-            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newSubmenuModal">Tambah Member</a>
+            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newMemberModal">Tambah Member</a>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -51,11 +51,11 @@
 <!-- End of Main Content -->
 
 <!-- Modal -->
-<div class="modal fade" id="newSubmenuModal" tabindex="-1" aria-labelledby="newSubmenuModalLabel" aria-hidden="true">
+<div class="modal fade" id="newMemberModal" tabindex="-1" aria-labelledby="newTambahMemberModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newSubmenuModalLabel">Tambah Member</h5>
+                <h5 class="modal-title" id="newTambahMemberModalLabel">Tambah Member</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -138,6 +138,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="deleteMemberModal<?= $m['id']; ?>" tabindex="-1" aria-labelledby="deleteMemberModal<?= $m['id']; ?>" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

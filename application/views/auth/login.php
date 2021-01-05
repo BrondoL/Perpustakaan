@@ -1,55 +1,77 @@
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
 
-    <!-- Outer Row -->
-    <div class="row justify-content-center">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Log in</title>
 
-        <div class="col-lg-7">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<?= base_url('assets'); ?>/dist/css/adminlte.min.css">
+</head>
 
-            <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div class="col-lg">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Login Page</h1>
-                                </div>
-                                <?= $this->session->flashdata('message'); ?>
-                                <form class="user" action="<?php echo base_url('auth'); ?>" method="POST">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Email Address..." value="<?php echo set_value('email'); ?>">
-                                        <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
-                                        <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox small">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck">
-                                            <label class="custom-control-label" for="customCheck">Remember
-                                                Me</label>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">
-                                        Login
-                                    </button>
-                                </form>
-                                <hr>
-                                <div class="text-center">
-                                    <a class="small" href="<?= base_url(); ?>auth/forgotpassword">Forgot Password?</a>
-                                </div>
-                                <div class="text-center">
-                                    <a class="small" href="<?= base_url(); ?>auth/register">Create an Account!</a>
-                                </div>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href=""><b>Admin</b>LTE</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+                <?= $this->session->flashdata('message'); ?>
+                <form action="<?php echo base_url('auth'); ?>" method="post">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email" name="email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <?= form_error('email', '<small class="text-danger pl-1">', '</small>'); ?>
+                    <div class="input-group mt-3">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <?= form_error('password', '<small class="text-danger pl-1">', '</small>'); ?>
+                    <div class="row mt-3 d-flex justify-content-center">
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+                <p class="mb-1 mt-3">
+                    <a href="<?= base_url(); ?>auth/forgotpassword">I forgot my password</a>
+                </p>
+                <p class="mb-0">
+                    <a href="<?= base_url(); ?>auth/register" class="text-center">Register a new membership</a>
+                </p>
             </div>
-
+            <!-- /.login-card-body -->
         </div>
-
     </div>
+    <!-- /.login-box -->
 
-</div>
+    <!-- jQuery -->
+    <script src="<?= base_url('assets'); ?>/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="<?= base_url('assets'); ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="<?= base_url('assets'); ?>/dist/js/adminlte.min.js"></script>
+</body>
+
+</html>

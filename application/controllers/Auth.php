@@ -28,9 +28,9 @@ class Auth extends CI_Controller
                 $data = [
                     'title' => 'Login'
                 ];
-                $this->load->view('templates/auth_header', $data);
+                // $this->load->view('templates/auth_header', $data);
                 $this->load->view('auth/login');
-                $this->load->view('templates/auth_footer');
+                // $this->load->view('templates/auth_footer');
             } else {
                 $this->_login();
             }
@@ -92,9 +92,9 @@ class Auth extends CI_Controller
                 $data = [
                     'title' => 'Register'
                 ];
-                $this->load->view('templates/auth_header', $data);
-                $this->load->view('auth/register');
-                $this->load->view('templates/auth_footer');
+                // $this->load->view('templates/auth_header', $data);
+                $this->load->view('auth/register2');
+                // $this->load->view('templates/auth_footer');
             } else {
                 $email = $this->input->post('email', true);
                 $data = [

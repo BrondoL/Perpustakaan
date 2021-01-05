@@ -15,7 +15,7 @@
             <?= form_error('keterangan', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
             <?= $this->session->flashdata('message'); ?>
 
-            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newSubmenuModal">Tambah Buku</a>
+            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newTambahModal">Tambah Buku</a>
             <div class="row">
                 <div class="col-lg-7">
                     <form action="<?= base_url('perpus'); ?>" method="GET">
@@ -67,11 +67,11 @@
 <!-- End of Main Content -->
 
 <!-- Modal -->
-<div class="modal fade" id="newSubmenuModal" tabindex="-1" aria-labelledby="newSubmenuModalLabel" aria-hidden="true">
+<div class="modal fade" id="newTambahModal" tabindex="-1" aria-labelledby="newTambahModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newSubmenuModalLabel">Tambah Buku</h5>
+                <h5 class="modal-title" id="newTambahModalLabel">Tambah Buku</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -172,6 +172,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="deleteBukuModal<?= $b['buku_id']; ?>" tabindex="-1" aria-labelledby="deleteBukuModal<?= $b['buku_id']; ?>" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
