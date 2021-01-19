@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 19, 2021 at 06:08 PM
+-- Generation Time: Jan 19, 2021 at 06:10 PM
 -- Server version: 10.3.25-MariaDB-0+deb10u1
 -- PHP Version: 7.3.19-1~deb10u1
 
@@ -18,28 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `perpustakaan`
+-- Database: `ci3`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admin`
---
-
-CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
-  `username` varchar(50) DEFAULT '0',
-  `password` varchar(50) DEFAULT '0',
-  `nama` varchar(50) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`id`, `username`, `password`, `nama`) VALUES
-(1, 'admin', '123456', 'Fikri Firman Fadilah');
 
 -- --------------------------------------------------------
 
@@ -50,224 +30,256 @@ INSERT INTO `admin` (`id`, `username`, `password`, `nama`) VALUES
 CREATE TABLE `buku` (
   `buku_id` int(11) NOT NULL,
   `sampul` varchar(128) NOT NULL,
-  `kode_buku` varchar(50) DEFAULT NULL,
-  `judul` varchar(100) DEFAULT NULL,
-  `penerbit` varchar(50) DEFAULT NULL,
-  `pengarang` varchar(50) DEFAULT NULL,
-  `th_terbit` varchar(50) DEFAULT NULL,
-  `rak_id` int(11) DEFAULT NULL,
-  `jumlah` int(11) DEFAULT NULL,
-  `ket` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `kode_buku` varchar(128) NOT NULL,
+  `judul` varchar(128) NOT NULL,
+  `penerbit` varchar(128) NOT NULL,
+  `pengarang` varchar(128) NOT NULL,
+  `th_terbit` varchar(128) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `ket` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `buku`
 --
 
-INSERT INTO `buku` (`buku_id`, `sampul`, `kode_buku`, `judul`, `penerbit`, `pengarang`, `th_terbit`, `rak_id`, `jumlah`, `ket`) VALUES
-(1, '', '9786026417374', 'Buku Ajar Mata Kuliah Bahasa Indonesia : Pendekatan Saintifik', 'Indomedia Pustaka', 'Solehun ,S.Pd., M.Pd.', '2018', 1, 18, 'Buku ini disusun dengan tujuan menyediakan materi pembelajaran bahasa Indonesia. Materi dan tugas-tugas dalam buku ajar ini diorganisasikan ke dalam empat siklus pembelajaran, yaitu mengamti, menanya, mengumpulkan informasi, mengasosiasi, dan mengomunikasikan. Selain itu, untuk keperluan pengayaan dan evaluasi. Setiap unit materi dilengkapi dengan latihan tugas terstruktur.'),
-(2, '', '9786020459721', 'Pemrograman Android & Database', 'Elex Media Komputindo', 'Abdul Kadir', '2018', 2, 20, 'Buku yang sangat bermanfaat untuk mempelajari pembuatan aplikasi Android yang menyimpan data dalam bentuk database. Buku ini mengupas materi-materi menarik, yang dibahas langkah demi langkah sehingga memudahkan bagi siapa saja untuk mempraktikkannya.     Dasar-dasar pemrograman Web diberikan pada buku ini, dari HTML, CSS, JavaScript, jQuery hingga PHP. Selain itu, dasar pengaksesan database MySQL melalui phpMyAdmin dan juga melalui skrip PHP ikut dijelaskan. Contoh aplikasi Android untuk mengelola data inventori laboratorium dan juga aplikasi Internet of Things untuk mengontrol sejumlah lampu disertakan pada buku ini.'),
-(4, '', '9789792963809', 'Logika dan Matematika', ' Andi Publisher', '', '2019', 2, 10, 'Buku Logika & Matematika ini dapat digunakan sebagai buku ajar atau referensi yang menunjang pembelajaran mata kuliah Matematik Diskrit. Dengan mempelajari buku ini, mahasiswa diharapkan mampu meningkatkan kemampuannya dalam berpikir logis, kreatif, dan kritis. Kemampuan itu tentunya akan sangat berguna bagi mahasiswa/pembaca dalam menunjang pengembang sistem informasi, pengembang multimedia/game, dan kompetensi yang relevan.');
-
---
--- Triggers `buku`
---
-DELIMITER $$
-CREATE TRIGGER `buku_before_delete` BEFORE DELETE ON `buku` FOR EACH ROW BEGIN
-
-DELETE FROM peminjaman WHERE buku_id = OLD.buku_id;
-END
-$$
-DELIMITER ;
+INSERT INTO `buku` (`buku_id`, `sampul`, `kode_buku`, `judul`, `penerbit`, `pengarang`, `th_terbit`, `jumlah`, `ket`) VALUES
+(5, '1.png', '978-602-1514-91-7', 'Algoritma dan Pemrograman dalam C++', 'Informatika', 'Rinaldi Munir', 'Februari 2016', 20, 'Buku Algoritma dan Pemrograman dalam Bahasa Pascal, C, dan C++ merupakan edisi baru dari buku sebelumnya, yaitu Algoritma dan Pemrograman dalam Bahasa Pascal dan C. Buku ini disusun bagi siapapun (siswa, mahasiswa, umum) yang ingin mempelajari bidang pemrograman.⁣⁣ ⁣⁣'),
+(6, '2.png', '978-623-7131-25-0 ⁣', 'Social Media & Social Network', 'Informatika', 'I Putu Agus Eka Pratama ⁣', '2020', 50, 'Melalui buku ini kamu dapat mengetahui perkembangan social media dan social network dari waktu ke waktu beserta bisnis didalamnya, teknologi Augmented Reality, Machine Learning, dan Cloud Computing beserta dengan perannya pada social media dan social network, apa etika komputer dan etika internet serta bagaimana penerapannya dalam penggunaan social media.⁣⁣'),
+(11, '3.png', '978-632-1514-91-8', 'Pemrograman Web', 'Informatika', 'Priyanto Hidayatulloh', 'Desember 2016', 15, 'Buku Pemrograman Web : Studi Kasus Web Sistem Informasi Akademik ini cocok untuk Mahasiswa/Siswa SMK dalam menyelesaikan tugas mata kuliah Pemrograman Web dan tugas akhir dengan topik web atau sistem informasi. Buku ini juga cocok untuk freelance programmer maupun programmer profesional yang bekerja di perusahaan serta orang awam terhadap dunia pemrograman web karena dijelaskan dari nol secara runtut dan terperinci dengan bahasa yang sederhana dan mudah dimengerti.⁣⁣⁣');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `member`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `member` (
-  `member_id` int(11) NOT NULL,
-  `kode_member` varchar(10) DEFAULT NULL,
-  `nama` varchar(50) DEFAULT NULL,
-  `alamat` text DEFAULT NULL,
-  `no_identitas` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `image` varchar(128) NOT NULL,
+  `password` varchar(256) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `is_active` int(1) NOT NULL,
+  `date_created` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `member`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `member` (`member_id`, `kode_member`, `nama`, `alamat`, `no_identitas`) VALUES
-(1, '1703040024', 'Fikri Firman Fadilah', 'Wangon', '081227853507');
-
---
--- Triggers `member`
---
-DELIMITER $$
-CREATE TRIGGER `member_before_delete` BEFORE DELETE ON `member` FOR EACH ROW BEGIN
-
-DELETE FROM peminjaman WHERE member_id = OLD.member_id;
-
-END
-$$
-DELIMITER ;
+INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
+(1, 'Aulia Ahmad Nabil', 'admin@gmail.com', 'default.png', '$2y$10$XhdnKJwu3rzqvY3uEy/S6OPx2.ZT33R65AZRb3eeFf4aIdijc4Bpu', 1, 1, 1605710844),
+(2, 'BrondoL', 'idnbdy@gmail.com', 'default.png', '$2y$10$dT9jku4SDgKbufAgiAgowuvD820Zqk1GjAYgeyxew5JW84qx.VZsW', 2, 1, 1605711513);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `peminjaman`
+-- Table structure for table `user_access_menu`
 --
 
-CREATE TABLE `peminjaman` (
-  `peminjaman_id` int(11) NOT NULL,
-  `member_id` int(11) DEFAULT NULL,
-  `buku_id` int(11) DEFAULT NULL,
-  `jumlah_pinjam` int(11) DEFAULT NULL,
-  `tgl_pengembalian` int(11) DEFAULT NULL,
-  `tgl_pinjam` date DEFAULT NULL,
-  `tgl_kembali` date DEFAULT NULL,
-  `status` varchar(50) DEFAULT NULL,
-  `ket_pinjam` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `user_access_menu` (
+  `id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `peminjaman`
+-- Dumping data for table `user_access_menu`
 --
 
-INSERT INTO `peminjaman` (`peminjaman_id`, `member_id`, `buku_id`, `jumlah_pinjam`, `tgl_pengembalian`, `tgl_pinjam`, `tgl_kembali`, `status`, `ket_pinjam`) VALUES
-(28, 1, 4, 10, 2020, '2019-12-24', '2019-12-31', 'Kembali', 'DSDSD'),
-(29, 1, 4, 2, NULL, '2019-12-24', '2019-12-02', 'Pinjam', 'dsds'),
-(32, 1, 1, 2, 2020, '2019-12-24', '2019-12-31', 'Kembali', 'sadsd');
-
---
--- Triggers `peminjaman`
---
-DELIMITER $$
-CREATE TRIGGER `peminjaman_after_insert` AFTER INSERT ON `peminjaman` FOR EACH ROW BEGIN
-
-UPDATE buku
-SET jumlah = jumlah-NEW.jumlah_pinjam WHERE buku_id = NEW.buku_id;
-END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `peminjaman_after_update` AFTER UPDATE ON `peminjaman` FOR EACH ROW BEGIN
-
-IF(NEW.status = 'Kembali') THEN
-UPDATE buku
-SET jumlah = jumlah+OLD.jumlah_pinjam WHERE buku_id = NEW.buku_id;
-END IF;
-END
-$$
-DELIMITER ;
+INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
+(1, 1, 1),
+(3, 2, 2),
+(10, 1, 3),
+(12, 1, 4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rak`
+-- Table structure for table `user_menu`
 --
 
-CREATE TABLE `rak` (
-  `rak_id` int(11) NOT NULL,
-  `nama_rak` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `user_menu` (
+  `id` int(11) NOT NULL,
+  `menu` varchar(128) NOT NULL,
+  `judul` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `rak`
+-- Dumping data for table `user_menu`
 --
 
-INSERT INTO `rak` (`rak_id`, `nama_rak`) VALUES
-(1, 'Rak 1'),
-(2, 'Rak 2');
+INSERT INTO `user_menu` (`id`, `menu`, `judul`) VALUES
+(1, 'Admin', 'Admin'),
+(2, 'User', 'User'),
+(3, 'Perpus', 'Menu Perpustakaan'),
+(4, 'Menu', 'Menu Web');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_role`
+--
+
+CREATE TABLE `user_role` (
+  `id` int(11) NOT NULL,
+  `role` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_role`
+--
+
+INSERT INTO `user_role` (`id`, `role`) VALUES
+(1, 'Administrator'),
+(2, 'Member');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_sub_menu`
+--
+
+CREATE TABLE `user_sub_menu` (
+  `id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `url` varchar(128) NOT NULL,
+  `icon` varchar(128) NOT NULL,
+  `is_active` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_sub_menu`
+--
+
+INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active`) VALUES
+(1, 1, 'Dashboard', 'admin', 'fas fa-fw fa-tachometer-alt', 1),
+(2, 2, 'Daftar Buku', 'user', 'fas fa-fw fa-book', 1),
+(3, 2, 'Buku Saya', 'user/edit', 'fas fa-fw fa-bookmark', 1),
+(4, 4, 'Menu Management', 'menu', 'fas fa-fw fa-folder', 1),
+(5, 4, 'Submenu Management', 'menu/submenu', 'far fa-fw fa-folder-open', 1),
+(9, 1, 'Role', 'admin/role', 'fas fa-fw fa-user-tie', 1),
+(10, 2, 'Riwayat Peminjaman', 'user/changepassword', 'fas fa-fw fa-shopping-cart', 1),
+(11, 3, 'Data Buku', 'Perpus', 'fas fa-fw fa-book', 1),
+(12, 3, 'Data Member', 'perpus/datamember', 'fas fa-fw fa-users', 1),
+(13, 3, 'Data Peminjaman', 'perpus/datapeminjaman', 'fas fa-fw fa-shopping-cart', 1),
+(14, 3, 'Data Pengembalian', 'perpus/datapengembalian', 'fas fa-fw fa-sync-alt', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_token`
+--
+
+CREATE TABLE `user_token` (
+  `id` int(11) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `token` varchar(128) NOT NULL,
+  `date_created` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_token`
+--
+
+INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
+(5, 'intaniar@gmail.com', '3RWo6l934UyvUgcPEwGb3vJU8mp2H4/AkV5Znz//1BJDHvI/WeQW9auFZcilMHpd2n/P6Vy04Ky5iIR8xAUIqw==', 1609856438),
+(6, 'tanya@gmail.com', 'FLUwvoeSkwcgKKmgUw/mZLIbh7TrznypPNeG6pFXWBxPb1KIb65Cc0qLa9u/u9XG1g+k+c+4rup/00LtxRY6NQ==', 1609856851);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `buku`
 --
 ALTER TABLE `buku`
-  ADD PRIMARY KEY (`buku_id`),
-  ADD KEY `FK_buku_rak` (`rak_id`);
+  ADD PRIMARY KEY (`buku_id`);
 
 --
--- Indexes for table `member`
+-- Indexes for table `user`
 --
-ALTER TABLE `member`
-  ADD PRIMARY KEY (`member_id`);
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `peminjaman`
+-- Indexes for table `user_access_menu`
 --
-ALTER TABLE `peminjaman`
-  ADD PRIMARY KEY (`peminjaman_id`),
-  ADD KEY `FK_peminjaman_member` (`member_id`),
-  ADD KEY `FK_peminjaman_buku` (`buku_id`);
+ALTER TABLE `user_access_menu`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `rak`
+-- Indexes for table `user_menu`
 --
-ALTER TABLE `rak`
-  ADD PRIMARY KEY (`rak_id`);
+ALTER TABLE `user_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_role`
+--
+ALTER TABLE `user_role`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_sub_menu`
+--
+ALTER TABLE `user_sub_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_token`
+--
+ALTER TABLE `user_token`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `buku_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `buku_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `member`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `member`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `peminjaman`
+-- AUTO_INCREMENT for table `user_access_menu`
 --
-ALTER TABLE `peminjaman`
-  MODIFY `peminjaman_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+ALTER TABLE `user_access_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `rak`
+-- AUTO_INCREMENT for table `user_menu`
 --
-ALTER TABLE `rak`
-  MODIFY `rak_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `user_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT for table `user_role`
 --
+ALTER TABLE `user_role`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Constraints for table `buku`
+-- AUTO_INCREMENT for table `user_sub_menu`
 --
-ALTER TABLE `buku`
-  ADD CONSTRAINT `FK_buku_rak` FOREIGN KEY (`rak_id`) REFERENCES `rak` (`rak_id`);
+ALTER TABLE `user_sub_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- Constraints for table `peminjaman`
+-- AUTO_INCREMENT for table `user_token`
 --
-ALTER TABLE `peminjaman`
-  ADD CONSTRAINT `FK_peminjaman_buku` FOREIGN KEY (`buku_id`) REFERENCES `buku` (`buku_id`),
-  ADD CONSTRAINT `FK_peminjaman_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`);
+ALTER TABLE `user_token`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
